@@ -1,0 +1,55 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+void Checking(string math)
+{
+
+}
+
+int main()
+{
+	string math = "{(2<1->[4+]5-4)}";
+	stack<char> parentheses;
+
+	parentheses.push(math[0]);
+
+	for (int i = 1; i < math.length(); i++)
+	{
+		if (math[i] == '(' || math[i] == '[' || math[i] == '{')
+		{
+			parentheses.push(math[i]);
+		}
+		else if (math[i] == ')')
+		{
+			if (parentheses.top() == '(')
+				parentheses.pop();
+			else
+				break;
+		}
+		else if (math[i] == ']')
+		{
+			if (parentheses.top() == '[')
+				parentheses.pop();
+			else
+				break;
+		}
+		else if (math[i] == '}')
+		{
+			if (parentheses.top() == '{')
+				parentheses.pop();
+			else
+				break;
+		}
+	}
+
+	if (parentheses.empty())
+	{
+		cout << "good!" << "\n";
+	}
+	else
+	{
+		cout << "mastake" << "\n";
+	}
+}
